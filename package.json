@@ -5,7 +5,8 @@
     "name": "Andrey Raikh",
     "url": "https://github.com/AndreyRaih"
   },
-  "private": true,
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name VueProviderComponent lib/index.js",
