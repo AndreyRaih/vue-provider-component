@@ -1336,30 +1336,29 @@ var VueReactiveProvide_umd_min = __webpack_require__("28e9");
   },
   watch: {
     vuexModuleCfg: {
-      immediate: true,
       deep: true,
       handler: function handler(vuexModuleData) {
-        if (vuexModuleData) this.createStoreModule(vuexModuleData);
+        if (vuexModuleData.name && vuexModule.data) this.createStoreModule(vuexModuleData);
       }
     }
   },
   methods: {
-    createStoreModule: function createStoreModule(vuexModuleData) {
+    createStoreModule: function createStoreModule(vuexModule) {
       var _this = this;
 
-      if (vuexModuleData.name && vuexModuleData.data && this.$store) {
-        this.$store.registerModule(vuexModuleData.name, vuexModuleData.data);
+      if (vuexModule.name && vuexModule.data && this.$store) {
+        this.$store.registerModule(vuexModule.name, vuexModule.data);
         this.vuexModuleTarget = {
-          state: this.$store.state[vuexModuleData.name],
+          state: this.$store.state[vuexModule.name],
           dispatch: function dispatch(actionName, payload) {
-            return _this.$store.dispatch("".concat(vuexModuleData.name, "/").concat(actionName), payload);
+            return _this.$store.dispatch("".concat(vuexModule.name, "/").concat(actionName), payload);
           },
           commit: function commit(actionName, payload) {
-            return _this.$store.commit("".concat(vuexModuleData.name, "/").concat(actionName), payload);
+            return _this.$store.commit("".concat(vuexModule.name, "/").concat(actionName), payload);
           },
-          getters: this.$store.getters[vuexModuleData.name]
+          getters: this.$store.getters[vuexModule.name]
         };
-      } else if (vuexModuleData.name && vuexModuleData.data && !this.$store) {
+      } else if (vuexModule.name && vuexModule.data && !this.$store) {
         console.warn("No Vuex detacted: For the correct work of this function, you should install Vuex");
       }
     }
