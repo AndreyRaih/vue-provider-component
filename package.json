@@ -1,6 +1,6 @@
 {
   "name": "vue-provider-component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Andrey Raikh",
     "url": "https://github.com/AndreyRaih"
@@ -12,8 +12,12 @@
     "build": "vue-cli-service build --target lib --name VueProviderComponent lib/index.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "dist/VueReactiveProvide.common",
-  "browser": "dist/VueReactiveProvide.umd.min",
+  "main": "dist/VueProviderComponent.umd.js",
+  "module": "dist/VueProviderComponent.common.js",
+  "unpkg": "dist/VueProviderComponent.umd.min.js",
+  "browser": {
+    "./sfc": "lib/component/Provider.js"
+  },
   "dependencies": {
     "vue-reactive-provide": "^0.3.0"
   },
