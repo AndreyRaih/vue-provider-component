@@ -1,5 +1,12 @@
+<template>
+  <div>
+    <slot />
+  </div>
+</template>
+
+<script>
 export default {
-  name: "Provider",
+  name: "VProvider",
   props: {
     values: {
       default: null
@@ -39,15 +46,13 @@ export default {
     }
   },
   reactiveProvide: {
-    name: "providedData",
+    name: "provided",
     include: ["values", "vuexModuleTarget"]
   },
   destroyed () {
     if (this.vuexModuleCfg.name && this.$store) {
       this.$store.unregisterModule(this.vuexModuleCfg.name);
     }
-  },
-  render: function (createElement) {
-    return createElement('div', this.$slots.default);
   }
 }
+</script>

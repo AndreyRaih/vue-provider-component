@@ -70,14 +70,14 @@ After installing you can use it in two cases, both separately and together:
 	};
 	</script>
 
-After this, each children, who has a **inject** option with subscribes on **"providedData"** Symbol will get the **sharedData**  from parent. It's possible on each level of nesting.
+After this, each children, who has a **inject** option with subscribes on **"provided"** Symbol will get the **sharedData**  from parent. It's possible on each level of nesting.
 
 For example, in **ExampleConsumer.vue**:
 ```
 <script>
 export default {
 	...// "ExampleConsumer" options...
-	inject: ["providedData"]
+	inject: ["provided"]
 	...
 };
 </script>
@@ -107,7 +107,7 @@ export default {
 };
 </script>
 ```
-And after adding, you can get access to all features of your module inside children components with providedData's option **vuexModuleTarget**:
+And after adding, you can get access to all features of your module inside children components with provided's option **vuexModuleTarget**:
 ```
 // Inside children component
 <script>
@@ -115,7 +115,7 @@ export default {
 	...
 	methods: {
 		updateModule () {
-			this.providedData.vuexModuleTarget.dispatch('actionName', this.someValue)
+			this.provided.vuexModuleTarget.dispatch('actionName', this.someValue)
 		}
 	}
 	...

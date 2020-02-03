@@ -1,7 +1,7 @@
 <template>
   <div>
     Section with values in Provider context<br />
-    {{ providedData }}
+    {{ provided }}
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import Vue from "vue";
 export default Vue.extend({
   name: "ExampleConsumer",
-  inject: ["providedData"],
+  inject: ["provided"],
   props: {
     consumerName: {
       type: String,
@@ -17,7 +17,8 @@ export default Vue.extend({
     }
   },
   watch: {
-    providedData: {
+    provided: {
+      immediate: true,
       deep: true,
       handler: function (value) {
         if (value.vuexModuleTarget) this.updateModule();
@@ -26,7 +27,7 @@ export default Vue.extend({
   },
   methods: {
     updateModule () {
-      this.providedData.vuexModuleTarget.dispatch('setExampleValue', `value from ${this.consumerName}`)
+      this.provided.vuexModuleTarget.dispatch('setExampleValue', `value from ${this.consumerName}`)
     }
   }
 });

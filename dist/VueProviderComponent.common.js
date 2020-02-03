@@ -1301,21 +1301,30 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"69d7f64d-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/component/Provider.vue?vue&type=template&id=06f4c968&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)}
+var staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./lib/component/Provider.vue?vue&type=template&id=06f4c968&
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
 var es_array_concat = __webpack_require__("99af");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
 var es_function_name = __webpack_require__("b0c0");
 
-// EXTERNAL MODULE: ./node_modules/vue-reactive-provide/dist/VueReactiveProvide.umd.min.js
-var VueReactiveProvide_umd_min = __webpack_require__("28e9");
-
-// CONCATENATED MODULE: ./lib/component/Provider.js
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./lib/component/Provider.vue?vue&type=script&lang=js&
 
 
-
-/* harmony default export */ var Provider = ({
-  name: "Provider",
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var Providervue_type_script_lang_js_ = ({
+  name: "VProvider",
   props: {
     values: {
       default: null
@@ -1336,9 +1345,10 @@ var VueReactiveProvide_umd_min = __webpack_require__("28e9");
   },
   watch: {
     vuexModuleCfg: {
+      immediate: true,
       deep: true,
       handler: function handler(vuexModuleData) {
-        if (vuexModuleData.name && vuexModule.data) this.createStoreModule(vuexModuleData);
+        if (vuexModuleData.name && vuexModuleData.data) this.createStoreModule(vuexModuleData);
       }
     }
   },
@@ -1363,23 +1373,143 @@ var VueReactiveProvide_umd_min = __webpack_require__("28e9");
       }
     }
   },
-  mixins: [Object(VueReactiveProvide_umd_min["ReactiveProvideMixin"])({
-    name: "providedData",
+  reactiveProvide: {
+    name: "provided",
     include: ["values", "vuexModuleTarget"]
-  })],
+  },
   destroyed: function destroyed() {
     if (this.vuexModuleCfg.name && this.$store) {
       this.$store.unregisterModule(this.vuexModuleCfg.name);
     }
-  },
-  render: function render(createElement) {
-    return createElement('div', this.$slots.default);
   }
 });
+// CONCATENATED MODULE: ./lib/component/Provider.vue?vue&type=script&lang=js&
+ /* harmony default export */ var component_Providervue_type_script_lang_js_ = (Providervue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+// CONCATENATED MODULE: ./lib/component/Provider.vue
+
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  component_Providervue_type_script_lang_js_,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var Provider = (component.exports);
+// EXTERNAL MODULE: ./node_modules/vue-reactive-provide/dist/VueReactiveProvide.umd.min.js
+var VueReactiveProvide_umd_min = __webpack_require__("28e9");
+var VueReactiveProvide_umd_min_default = /*#__PURE__*/__webpack_require__.n(VueReactiveProvide_umd_min);
+
 // CONCATENATED MODULE: ./lib/index.js
+
 
 /* harmony default export */ var lib = ({
   install: function install(Vue) {
+    Vue.use(VueReactiveProvide_umd_min_default.a);
     Vue.component('VProvider', Provider);
   }
 });
