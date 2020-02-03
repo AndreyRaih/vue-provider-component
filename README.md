@@ -25,13 +25,13 @@ After this, you can use the library only inside your components:
     import { VProvider } from 'vue-provider-component';
     
     export default {
-    // ... Other component's options
-	    components: {
-		    VProvider
-		}
-	// ...
-	};
-	</script>
+      // ... Other component's options
+      components: {
+        VProvider
+      }
+      // ...
+    };
+    </script>
 
 
 
@@ -39,9 +39,9 @@ After this, you can use the library only inside your components:
 Or with adding like a Plugin in your **main.js** file:
 
     import Vue from 'vue';
-	import VProvider from 'vue-provider-component';
+    import VProvider from 'vue-provider-component';
 
-	Vue.use(ReactiveProvide);
+    Vue.use(ReactiveProvide);
 
 
 
@@ -51,24 +51,24 @@ After installing you can use it in two cases, both separately and together:
 
 
     <template>
-		<div>
-			<VProvider :values="sharedData">
-				<ExampleConsumer />
-			</VProvider>
-		</div>
-	</temaplate>
+	<div>
+	  <VProvider :values="sharedData">
+	    <ExampleConsumer />
+	  </VProvider>
+	</div>
+    </temaplate>
 	
-	<script>
-	export default {
-		...
-		data: () => ({
-			sharedData: {
-				// your data
-			}
-		}),
-		...
-	};
-	</script>
+    <script>
+    export default {
+    ...
+	data: () => ({
+	  sharedData: {
+	    // your data
+	  }
+	}),
+    ...
+    };
+    </script>
 
 After this, each children, who has a **inject** option with subscribes on **"provided"** Symbol will get the **sharedData**  from parent. It's possible on each level of nesting.
 
@@ -76,34 +76,34 @@ For example, in **ExampleConsumer.vue**:
 ```
 <script>
 export default {
-	...// "ExampleConsumer" options...
-	inject: ["provided"]
-	...
+  ...// "ExampleConsumer" options...
+  inject: ["provided"]
+  ...
 };
 </script>
 ```
 Also, you can provide access to Vuex module:
 ```
 <template>
-	<div>
-		<VProvider :vuexModuleCfg="vuexInitObj">
-			<ExampleConsumer />
-		</VProvider>
-	</div>
+  <div>
+    <VProvider :vuexModuleCfg="vuexInitObj">
+      <ExampleConsumer />
+    </VProvider>
+  </div>
 </temaplate>
 	
 <script>
 import someVuexModule from 'path/to/your/module';
 export default {
-	...
-	data: () => ({
-		vuexInitObj: {
-			// This is a name for your namespaced module
-			name: 'provide-module',
-			data: someVuexModule
-		}
-	}),
-	...
+  ...
+  data: () => ({
+    vuexInitObj: {
+      // This is a name for your namespaced module
+      name: 'provide-module',
+      data: someVuexModule
+    }
+  }),
+  ...
 };
 </script>
 ```
@@ -112,23 +112,23 @@ And after adding, you can get access to all features of your module inside child
 // Inside children component
 <script>
 export default {
-	...
-	methods: {
-		updateModule () {
-			this.provided.vuexModuleTarget.dispatch('actionName', this.someValue)
-		}
-	}
-	...
+  ...
+  methods: {
+    updateModule () {
+      this.provided.vuexModuleTarget.dispatch('actionName', this.someValue)
+    }
+  }
+  ...
 };
 </script>
 ```
 However, you can use another methods and properties like **commit**, **getters** and **state**, because vuexModuleTarget object, has properties with mapped to these options inside:
 ```
 vuexModuleTarget = {
-	state:  this.$store.state[vuexModuleData.name],
-	dispatch: (actionName, payload) =>  this.$store.dispatch(`${vuexModuleData.name}/${actionName}`, payload),
-	commit: (actionName, payload) =>  this.$store.commit(`${vuexModuleData.name}/${actionName}`, payload),
-	getters:  this.$store.getters[vuexModuleData.name],
+  state:  this.$store.state[vuexModuleData.name],
+  dispatch: (actionName, payload) =>  this.$store.dispatch(`${vuexModuleData.name}/${actionName}`, payload),
+  commit: (actionName, payload) =>  this.$store.commit(`${vuexModuleData.name}/${actionName}`, payload),
+  getters:  this.$store.getters[vuexModuleData.name],
 }
 ```
 ## Development
